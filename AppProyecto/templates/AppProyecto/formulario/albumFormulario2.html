@@ -1,0 +1,37 @@
+{% extends "AppProyecto/inicio.html" %}
+{% load static %}
+
+{% block titulo %}
+  Formulario Album
+{% endblock %}
+
+{% block contenido %}
+  {% if miFormulario.errors %}
+    <div class="alert alert-danger text-center" role="alert">
+      Están mal los datos, revisar.
+    </div>
+  {% endif %}
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-4">Agregar Álbum</h3>
+            <form method="POST" action="{% url 'albumFormulario2' %}">
+              {% csrf_token %}
+              <table class="table table-borderless">
+                {{ miFormulario.as_table }}
+              </table>
+              <div class="d-grid">
+                <input type="submit" class="btn btn-primary" value="Enviar">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+

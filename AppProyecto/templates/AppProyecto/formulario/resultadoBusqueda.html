@@ -1,0 +1,50 @@
+{% extends 'AppProyecto/inicio.html' %}
+{% load static %}
+
+{% block titulo %}Resultados Búsqueda{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5 mb-5">
+
+  <!-- Formulario de búsqueda -->
+  <form action="{% url 'buscar' %}" method="GET" class="mb-4">
+    <div class="input-group">
+      <input type="text" name="cancion" class="form-control" placeholder="Buscar canción..." required>
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+  </form>
+
+  <!-- Resultados de la búsqueda -->
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="card shadow">
+        <div class="card-body">
+          <h4 class="card-title mb-4 text-center">Resultados de la búsqueda</h4>
+
+          {% if cancion %}
+            <p class="lead">Estamos buscando la canción: <strong>{{ cancion }}</strong></p>
+          {% endif %}
+
+          {% if canciones %}
+            <ul class="list-group">
+              {% for can in canciones %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <span><strong>Canción:</strong> {{ can.titulo }}</span>
+                  <span><strong>Artista:</strong> {{ can.artista }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <div class="alert alert-warning mt-3" role="alert">
+              No se encontró ninguna canción.
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

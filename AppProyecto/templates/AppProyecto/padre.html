@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block titulo %}Mi Proyecto{% endblock %}</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <!-- Estilos personalizados -->
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    footer {
+      flex-shrink: 0;
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+
+  {% block navegacion %}
+  <!-- Navbar moderna -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'inicio' %}">
+        <i class="bi bi-music-note-beamed me-2"></i>Mi Proyecto
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center gap-2">
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'inicio' %}active{% endif %}" href="{% url 'inicio' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'about_me' %}active{% endif %}" href="{% url 'about_me' %}">Acerca de Mi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'contacto' %}active{% endif %}" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'login_request' %}active{% endif %}" href="{% url 'login_request' %}">Login</a>
+          </li>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item d-flex align-items-center gap-2 ms-3">
+            {% if avatar %}
+              <img src="{{ avatar.imagen.url }}" alt="Avatar" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+            {% endif %}
+            <span class="text-white mb-0">Hola, {{ user.username }}!</span>
+            <form action="{% url 'logout' %}" method="post" class="mb-0">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+            </form>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% endblock navegacion %}
+
+  <main class="container py-5">
+    {% block contenido %}
+    <!-- Tu contenido se insertará aquí -->
+    {% endblock contenido %}
+  </main>
+
+  <!-- Footer moderno -->
+  <footer class="bg-dark text-white text-center py-4 mt-auto">
+    <div class="container">
+      <small class="d-block mb-2">&copy; 2024 Mi Proyecto. Todos los derechos reservados.</small>
+      <div>
+        <a href="#" class="text-white text-decoration-none me-3">
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a href="#" class="text-white text-decoration-none me-3">
+          <i class="bi bi-twitter"></i>
+        </a>
+        <a href="#" class="text-white text-decoration-none">
+          <i class="bi bi-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script para opciones (opcional) -->
+  <script>
+    const comenzarBtn = document.getElementById('comenzar-btn');
+    if (comenzarBtn) {
+      comenzarBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('jumbotron-section').style.display = 'none';
+        document.getElementById('opciones-section').style.display = 'block';
+      });
+    }
+  </script>
+</body>
+</html>

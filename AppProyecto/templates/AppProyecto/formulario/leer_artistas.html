@@ -1,0 +1,73 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+{% block titulo %} Listado de Artistas! {% endblock titulo %}
+
+{% block contenido %}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Artistas disponibles</h3>
+                </div>
+                <div class="card-body">
+                    {% if  artistas %}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>fecha de nacimiento</th>
+                                        <th>nacionalidad</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for a in artistas %}
+                                        <tr>
+                                            <td>{{ a.nombre }}</td>
+                                            <td>{{ a.fecha_nacimiento }}</td>
+                                            <td>{{ a.nacionalidad }}</td>
+                                            
+                                            <td>
+                                                <a href="{% url 'artista_detail' a.id %}" class="btn btn-info btn-sm">
+                                                    Detalle
+                                                </a>
+                                                <a href="{% url 'artista_update' a.id%}" class="btn btn-warning btn-sm">
+                                                    Editar
+                                                </a>
+                                                <a href="{% url 'eliminar_artista' a.id %}" class="btn btn-danger btn-sm">
+                                                    Eliminar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info mb-0">
+                            No hay artistas cargados.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="{% url 'inicio' %}" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left"></i> Volver al Inicio
+                </a>
+            </div>
+            <div class="text-center mt-4">
+                <a href="{% url 'artista_create' %}" class="btn btn-primary mb-3">Crear Artista</a>
+            </div>
+            <div class="text-center mt-4">
+                <a href="{% url 'artistas' %}">Atrás</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Si usas iconos de Bootstrap, recuerda incluir el CDN de Bootstrap Icons en tu base/padre.html -->
+{% endblock contenido %}
+

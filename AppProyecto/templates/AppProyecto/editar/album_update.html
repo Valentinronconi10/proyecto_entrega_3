@@ -1,0 +1,40 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+
+{% block titulo %}Actualizar Álbum{% endblock titulo %}
+
+{% block contenido %}
+<div class="container my-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Actualizar Álbum</h2>
+    </div>
+    <div class="card-body">
+      <form method="post">
+        {% csrf_token %}
+        <!-- Si tu formulario no usa widgets Bootstrap, se recomienda renderizar manualmente: -->
+        {% for field in form %}
+          <div class="mb-3">
+            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}
+              <div class="form-text">{{ field.help_text }}</div>
+            {% endif %}
+            {% for error in field.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        
+        <button type="submit" class="btn btn-success">
+          Guardar Cambios
+        </button>
+        <a href="{% url 'leerAlbumes' %}" class="btn btn-secondary ms-2">
+          Cancelar
+        </a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}
+

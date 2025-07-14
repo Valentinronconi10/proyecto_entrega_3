@@ -1,0 +1,48 @@
+{% extends 'AppProyecto/padre.html' %}
+{% load static %}
+
+{% block titulo %}Contacto | Mi Proyecto{% endblock titulo %}
+
+{% block contenido %}
+<div class="container mt-5 mb-5">
+
+  <!-- Encabezado -->
+  <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary">
+      <i class="bi bi-envelope-fill"></i> Contacto
+    </h1>
+    <p class="lead text-muted">
+      Estoy feliz de que quieras ponerte en contacto conmigo.
+      Aquí tienes mi información para que puedas escribirme.
+    </p>
+  </div>
+
+  <!-- Sección principal -->
+  <div class="row justify-content-center align-items-center">
+    <div class="col-lg-6 mb-4">
+      <!-- Imagen representativa -->
+      <img src="https://via.placeholder.com/600x400?text=Contacto" alt="Imagen de Contacto" class="img-fluid rounded shadow">
+    </div>
+    <div class="col-lg-6">
+      <!-- Información de contacto -->
+      <div class="card border-0 shadow p-4">
+        <h3 class="mb-4 text-primary">
+          <i class="bi bi-person-lines-fill"></i> Mis Datos
+        </h3>
+        <p class="fs-5 mb-3">
+          <i class="bi bi-envelope"></i> <strong>Email:</strong> <br>
+          <a href="mailto:valentin.ronconi10@gmail.com" class="text-decoration-none">valentinronconi@gmail.com</a>
+        </p>
+        <p class="fs-5 mb-3">
+          <i class="bi bi-geo-alt"></i> <strong>Ubicación:</strong> <br>
+          La Plata, Buenos Aires, Argentina
+        </p>
+        <p class="fs-5">
+          <i class="bi bi-chat-dots"></i> ¡No dudes en escribirme para consultas, proyectos o sugerencias!
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock contenido %}

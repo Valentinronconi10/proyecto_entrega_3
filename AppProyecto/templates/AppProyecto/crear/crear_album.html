@@ -1,0 +1,13 @@
+{%extends 'AppProyecto/padre.html'%}
+{%load static%}
+{%block titulo%}Formulario para crear un Album{%endblock titulo%}
+{%block contenido%}
+   <form method="post">
+       {%csrf_token%}
+       <table>
+           {{form.as_table}}
+       </table>
+       <input type="submit" value="Enviar">
+       <a href="{% url 'leerAlbumes' %}">Cancelar</a>
+   </form>
+{%endblock contenido%}

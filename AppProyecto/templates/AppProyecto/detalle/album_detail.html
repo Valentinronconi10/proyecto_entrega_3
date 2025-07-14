@@ -1,0 +1,36 @@
+{% extends 'AppProyecto/padre.html' %}
+{% load static %}
+
+{% block titulo %} Detalle del Álbum {% endblock titulo %}
+
+{% block contenido %}
+<div class="container my-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Detalle del Álbum</h2>
+    </div>
+    <div class="card-body">
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item">
+          <strong>Título:</strong> {{ object.titulo }}
+        </li>
+        <li class="list-group-item">
+          <strong>Artista:</strong> {{ object.artista }}
+        </li>
+        <li class="list-group-item">
+          <strong>Fecha de lanzamiento:</strong> {{ object.fecha_lanzamiento }}
+        </li>
+        <li class="list-group-item">
+          <strong>Género:</strong> {{ object.genero }}
+        </li>
+      </ul>
+      <a href="{% url 'leerAlbumes' %}" class="btn btn-secondary">
+        ← Volver
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}
+
+
+

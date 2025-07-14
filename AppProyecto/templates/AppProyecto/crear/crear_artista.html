@@ -1,0 +1,15 @@
+{% extends "AppProyecto/padre.html" %}
+
+{% block titulo %} Crear Artista {% endblock %}
+
+{% block contenido %}
+  <div class="container mt-5">
+    <h2>Crear Artista</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+    <a href="{% url 'leerArtistas' %}" class="btn btn-link mt-3">Volver a lista de artistas</a>
+  </div>
+{% endblock %}

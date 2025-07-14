@@ -1,0 +1,74 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+{% block titulo %} Listado de Álbumes! {% endblock titulo %}
+
+{% block contenido %}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Álbumes disponibles</h3>
+                </div>
+                <div class="card-body">
+                    {% if albumes %}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Título</th>
+                                        <th>Artista</th>
+                                        <th>Fecha de Lanzamiento</th>
+                                        <th>Género</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for a in albumes %}
+                                        <tr>
+                                            <td>{{ a.titulo }}</td>
+                                            <td>{{ a.artista }}</td>
+                                            <td>{{ a.fecha_lanzamiento }}</td>
+                                            <td>{{ a.genero }}</td>
+                                            
+                                            <td>
+                                                <a href="{% url 'album_detail' a.id %}" class="btn btn-info btn-sm">
+                                                    Detalle
+                                                </a>
+                                                <a href="{% url 'album_update' a.id  %}" class="btn btn-warning btn-sm">
+                                                    Editar
+                                                </a>
+                                                <a href="{% url 'eliminar_album' a.id %}" class="btn btn-danger btn-sm">
+                                                    Eliminar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info mb-0">
+                            No hay álbumes cargados.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="{% url 'inicio' %}" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left"></i> Volver al Inicio
+                </a>
+            </div>
+             <div class="text-center mt-4">
+                <a href="{% url 'album_create' %}" class="btn btn-primary mb-3">Crear Album</a>
+            </div>
+            <div class="text-center mt-4">
+                <a href="{% url 'albumes' %}">Atrás</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Si usas iconos de Bootstrap, recuerda incluir el CDN de Bootstrap Icons en tu base/padre.html -->
+{% endblock contenido %}

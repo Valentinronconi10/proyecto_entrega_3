@@ -1,0 +1,31 @@
+{% extends 'AppProyecto/padre.html' %}
+{% load static %}
+
+{% block titulo %} Detalle de la Cancion {% endblock titulo %}
+
+{% block contenido %}
+<div class="container my-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Detalle de la Cancion</h2>
+    </div>
+    <div class="card-body">
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item">
+          <strong>Título:</strong> {{ object.titulo }}
+        </li>
+        <li class="list-group-item">
+          <strong>Duracion:</strong> {{object.duracion}}
+        </li>
+        <li class="list-group-item">
+          <strong>Artista:</strong> {{ object.artista }}
+        </li>
+      </ul>
+      <a href="{% url 'leerCanciones' %}" class="btn btn-secondary">
+        ← Volver
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}
+

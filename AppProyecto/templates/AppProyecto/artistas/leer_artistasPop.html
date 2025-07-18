@@ -1,0 +1,70 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+{% block titulo %}Listado de Artistas{% endblock titulo %}
+
+{% block contenido %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <h2 class="text-center mb-4" style="font-weight: 700; font-size: 2.8rem; letter-spacing: 1px;">
+                Artistas Populares
+            </h2>
+
+            {% if artistas %}
+                {% for a in artistas %}
+                    <div class="card mb-5 shadow-sm border-0">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-md-4 text-center p-3" style="min-height: 220px;">
+                                {% if a.imagen %}
+                                    <img src="{{ a.imagen.url }}" alt="{{ a.nombre }}" class="img-fluid rounded" style="max-height: 220px; object-fit: cover;">
+                                {% else %}
+                                    <span class="text-muted d-inline-block" style="line-height: 220px; font-size: 1.2rem;">Sin imagen</span>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h3 class="card-title mb-3" style="font-size: 2rem; font-weight: 700;">{{ a.nombre }}</h3>
+                                    <p class="card-text mb-2" style="font-size: 1.3rem;">
+                                        <strong>Fecha de nacimiento:</strong> {{ a.fecha_nacimiento }}
+                                    </p>
+                                    <p class="card-text" style="font-size: 1.3rem;">
+                                        <strong>Nacionalidad:</strong> {{ a.nacionalidad }}
+                                    </p>
+                                    <div class="mt-4 d-flex flex-wrap gap-3">
+                                        <a href="{% url 'artistaPop_detail' a.id %}" class="btn btn-outline-secondary btn-sm" style="font-size: 1.1rem; padding: 0.4rem 1rem;">Detalle</a>
+                                        <a href="{% url 'artistaPop_update' a.id %}" class="btn btn-outline-secondary btn-sm" style="font-size: 1.1rem; padding: 0.4rem 1rem;">Editar</a>
+                                        <a href="{% url 'eliminar_artistaPop' a.id %}" class="btn btn-outline-secondary btn-sm" style="font-size: 1.1rem; padding: 0.4rem 1rem;">Eliminar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-info text-center" style="font-size: 1.3rem;">
+                    No hay artistas cargados.
+                </div>
+            {% endif %}
+
+            <div class="text-center mt-5">
+                <a href="{% url 'inicio' %}" class="btn btn-outline-dark" style="font-size: 1.2rem; padding: 0.5rem 1.5rem;">
+                    <i class="bi bi-arrow-left"></i> Volver al Inicio
+                </a>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{% url 'artistaPop_create' %}" class="btn btn-dark mb-3" style="font-size: 1.2rem; padding: 0.5rem 1.5rem;">Crear Artista</a>
+            </div>
+
+            <div class="text-center mt-3" style="font-size: 1.2rem;">
+                <a href="{% url 'artistas' %}">Atrás</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock contenido %}
+
+
+

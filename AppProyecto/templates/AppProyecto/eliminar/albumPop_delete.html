@@ -1,0 +1,28 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+
+{% block titulo %}Confirmar Eliminación{% endblock titulo %}
+
+{% block contenido %}
+<div class="container my-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-danger text-white">
+      <h2 class="mb-0">Confirmar Eliminación</h2>
+    </div>
+    <div class="card-body">
+      <p class="fs-5">¿Estás seguro de que quieres eliminar este álbum?</p>
+      
+      <form method="post" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+          Sí, eliminar
+        </button>
+      </form>
+
+      <a href="{% url 'leerAlbumesPop' %}" class="btn btn-secondary ms-2">
+        Cancelar
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}

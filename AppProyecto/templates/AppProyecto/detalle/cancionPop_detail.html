@@ -1,0 +1,39 @@
+{% extends 'AppProyecto/padre.html' %}
+{% load static %}
+
+{% block titulo %} Detalle de la Canción {% endblock titulo %}
+
+{% block contenido %}
+<div class="container my-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Detalle de la Canción</h2>
+    </div>
+    <div class="card-body">
+
+      {% if object.imagen %}
+        <div class="text-center mb-3">
+          <img src="{{ object.imagen.url }}" alt="{{ object.titulo }}" class="img-thumbnail" style="max-height: 300px;">
+        </div>
+      {% else %}
+        <p class="text-muted text-center">Esta canción no tiene imagen.</p>
+      {% endif %}
+
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item">
+          <strong>Título:</strong> {{ object.titulo }}
+        </li>
+        <li class="list-group-item">
+          <strong>Duración:</strong> {{ object.duracion }}
+        </li>
+        <li class="list-group-item">
+          <strong>Artista:</strong> {{ object.artista }}
+        </li>
+      </ul>
+      <a href="{% url 'leerCancionesPop' %}" class="btn btn-secondary">
+        ← Volver
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}

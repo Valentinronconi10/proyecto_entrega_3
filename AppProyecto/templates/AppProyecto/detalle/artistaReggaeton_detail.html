@@ -1,0 +1,39 @@
+{% extends 'AppProyecto/padre.html' %}
+{% load static %}
+
+{% block titulo %} Detalle del Artista {% endblock titulo %}
+
+{% block contenido %}
+<div class="container my-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Detalle del Artista</h2>
+    </div>
+    <div class="card-body">
+
+      {% if object.imagen %}
+        <div class="text-center mb-3">
+          <img src="{{ object.imagen.url }}" alt="{{ object.nombre }}" class="img-thumbnail" style="max-height: 300px;">
+        </div>
+      {% else %}
+        <p class="text-muted text-center">Este artista no tiene imagen.</p>
+      {% endif %}
+
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item">
+          <strong>Nombre:</strong> {{ object.nombre }}
+        </li>
+        <li class="list-group-item">
+          <strong>Fecha de nacimiento:</strong> {{ object.fecha_nacimiento }}
+        </li>
+        <li class="list-group-item">
+          <strong>Nacionalidad:</strong> {{ object.nacionalidad }}
+        </li>
+      </ul>
+      <a href="{% url 'leerArtistasReggaeton' %}" class="btn btn-secondary">
+        ← Volver
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}

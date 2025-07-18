@@ -1,0 +1,20 @@
+{%extends 'AppProyecto/padre.html'%}
+{%load static%}
+{%block titulo%}Formulario para crear un Album{%endblock titulo%}
+{% block contenido %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="card shadow-lg p-4 w-100" style="max-width: 600px;">
+        <h2 class="text-center mb-4">Formulario</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.as_p }}
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success btn-lg px-4">Enviar</button>
+                <a href="{% url 'leerAlbumesPop' %}" class="btn btn-secondary btn-lg px-4">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock contenido %}

@@ -1,0 +1,39 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+
+{% block contenido %}
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <div class="card shadow border-0">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0 text-center">Editar Perfil</h4>
+        </div>
+
+        <div class="card-body">
+          <form method="post" enctype= "multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+            {{ avatar_form.as_p }}
+
+            <div class="d-flex justify-content-end mt-4">
+              <a href="{% url 'perfil' %}" class="btn btn-outline-secondary me-2">
+                <i class="bi bi-arrow-left-circle"></i> Atrás
+              </a>
+              <button type="submit" class="btn btn-success">
+                <i class="bi bi-save"></i> Guardar Cambios
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock contenido %}

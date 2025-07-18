@@ -1,0 +1,70 @@
+{% load static %}
+{% block titulo %} Secciones Musicales {% endblock titulo %}
+{% block contenido %}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'img/fondo.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5); /* Oscurece un poco para mejor lectura */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .titulo {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .secciones {
+            display: flex;
+            gap: 30px;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid #fff;
+            border-radius: 15px;
+            padding: 30px 40px;
+            color: #fff;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .secciones {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <h1 class="titulo">Explorá tu música</h1>
+        <div class="secciones">
+            <a href="{% url 'album' %}" class="card">Álbum</a>
+            <a href="{% url 'cancion' %}" class="card">Canción</a>
+            <a href="{% url 'artista' %}" class="card">Artista</a>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock contenido %}

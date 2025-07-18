@@ -1,42 +1,88 @@
 {% extends 'AppProyecto/padre.html' %}
 {% load static %}
-{% block titulo %}Artistas | Mi Proyecto{% endblock titulo %}
+
+{% block titulo %}Artistas y Álbumes | Mi Proyecto{% endblock titulo %}
 
 {% block contenido %}
-<div class="container mt-5 mb-5">
+<div class="container py-5">
 
-    <!-- Encabezado -->
-    <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold text-primary mb-3">
-            <i class="bi bi-person-lines-fill"></i> Artistas
-        </h1>
-        <p class="lead text-muted">
-            Descubre todos los artistas disponibles y explora su música y álbumes destacados.
-        </p>
+  <!-- Sección: Artistas -->
+  <div class="row justify-content-center text-center mb-4">
+    <div class="col-lg-8">
+      <h1 class="display-5 fw-bold text-primary">
+        <i class="bi bi-person-lines-fill"></i> Artistas
+      </h1>
+      <p class="lead text-muted">
+        Descubre todos los artistas disponibles y explora su música y álbumes destacados.
+      </p>
+    </div>
+  </div>
+
+  <!-- Cards de Artistas -->
+  <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+    <!-- Artista 1 -->
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'AppProyecto/img/artistas-de-rock.jpg' %}" class="card-img-top" alt="Rock Nacional">
+        <div class="card-body text-center">
+          <h5 class="card-title">ROCK NACIONAL</h5>
+          <p class="card-text">Mire algunos artistas de Rock Nacional.</p>
+          <a href="{% url 'leerArtistas' %}" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left-circle"></i> IR A LA LISTA
+          </a>
+        </div>
+      </div>
     </div>
 
-
-
-    <!-- Mensaje descriptivo final -->
-    <div class="alert alert-secondary text-center mt-5">
-        <p class="mb-1">
-            En esta sección podrás observar y manipular los artistas que más te gusten.
-        </p>
-        <p class="mb-0">
-            Mediante este enlace podrás acceder a un formulario para ver, agregar y administrar los artistas almacenados en la base de datos.
-        </p>
+    <!-- Artista 2 -->
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'AppProyecto/img/arti_reggaeton02.jpg' %}" class="card-img-top" alt="Reggaeton">
+        <div class="card-body text-center">
+          <h5 class="card-title">REGGAETON</h5>
+          <p class="card-text">Mire algunos artistas de Reggaetón.</p>
+          <a href="{% url 'leerArtistasReggaeton' %}" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left-circle"></i> IR A LA LISTA
+          </a>
+        </div>
+      </div>
     </div>
 
-    <!-- Botón volver -->
-    <div class="text-center mt-4">
-        <a href="{% url 'leerArtistas' %}" class="btn btn-outline-primary">
-            <i class="bi bi-arrow-left-circle"></i> Ir a la lista de Artistas
-        </a>
+    <!-- Artista 3 -->
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <img src="{% static 'AppProyecto/img/ar_pop.jpg' %}" class="card-img-top" alt="Pop">
+        <div class="card-body text-center">
+          <h5 class="card-title">POP</h5>
+          <p class="card-text">Mire algunos artistas de Pop.</p>
+          <a href="{% url 'leerArtistasPop' %}" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left-circle"></i> IR A LA LISTA
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="text-center mt-4">
-        <a href="{% url 'inicio' %}">Atrás</a>
-    <div>
+  </div>
+
+  <!-- Información Adicional -->
+  <div class="alert alert-secondary text-center mt-4">
+    <p class="mb-2">
+      En esta sección podrás observar y manipular los artistas de los géneros que más te gusten.
+    </p>
+    <p class="mb-0">
+      Mediante este enlace podrás acceder a un formulario para ver, agregar y administrar los artistas almacenados en la base de datos.
+    </p>
+  </div>
+
+  <!-- Botones -->
+  <div class="text-center mt-4">
+    
+    <a href="{% url 'inicio' %}" class="btn btn-outline-secondary">
+      <i class="bi bi-house"></i> Atrás
+    </a>
+  </div>
 
 </div>
 {% endblock contenido %}
+
+
 

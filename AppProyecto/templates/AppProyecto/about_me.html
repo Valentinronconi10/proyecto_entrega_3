@@ -1,67 +1,65 @@
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About Me - Valentin Ronconi</title>
+ {% extends "AppProyecto/padre.html" %}
+{% load static %}
+{% block titulo %}Sobre Mí - Valentin Ronconi{% endblock titulo %}
 
-  {%block contenido%}
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <style>
-    body {
-      background: #f8f9fa;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
-    }
-    .about-section {
-      background: white;
-      max-width: 720px;
-      margin: 3rem auto;
-      padding: 2.5rem 3rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-    .about-section h1 {
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: #0d6efd;
-      text-align: center;
-    }
-    .about-section p {
-      line-height: 1.65;
-      font-size: 1.1rem;
-      margin-bottom: 1.2rem;
-    }
-    .signature {
-      font-style: italic;
-      font-weight: 600;
-      margin-top: 2rem;
-      text-align: right;
-      color: #555;
-    }
-    @media (max-width: 576px) {
-      .about-section {
-        padding: 1.5rem 1.5rem;
-        margin: 2rem 1rem;
-      }
-    }
-  </style>
-</head>
-<body>
+{% block contenido %}
+<div class="container">
   <section class="about-section shadow-sm">
     <h1>Sobre Mí</h1>
     <p>Mediante este espacio quiero presentarme ante ustedes para que puedan conocerme y saber una pequeña parte de mi vida.</p>
-    <p>Mi nombre es <strong>Valentin Ronconi</strong>, tengo 20 años de edad, estudio Licenciatura en Sistemas en la Universidad Nacional de La Plata.</p>
+    <p>Mi nombre es <strong>Valentin Ronconi</strong>, tengo 20 años de edad, estudio Licenciatura en Sistemas en la Universidad Nacional de La Plata. Me gusta jugar al fútbol,  compartir tiempo con mi familia y amigos, entre otras cosas.
+       Soy hincha del Club Atlético River Plate, por lo tanto me gusta tambien ir a la cancha!.</p>
     <p>Comencé el curso de <em>"Python"</em> en la plataforma <em>"Coder House"</em> en el año 2025, la cual me pareció una acertada decisión de mi parte para complementar mis estudios y sumar lenguajes de programación a lo largo de mi capacitación. La verdad, me pareció un curso muy bueno, el cual recomiendo de corazón.</p>
     <p>Para mi entrega final, hice esta página web basada en música, donde se pueden ver artistas, álbumes y canciones, con formularios para agregar, editar, eliminar y ver detalladamente cada uno de estos modelos.</p>
     <p>Me despido y espero que puedan navegar tranquilamente en este sitio web, hecho de corazón.</p>
     <p class="signature">Gracias a todos, saludos y buena vida.<br />Valentin Ronconi</p>
-  </section>
 
-  <!-- Bootstrap 5 JS (opcional para interactividad) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
- <div class="text-center mt-4">
-    <a href="{% url 'inicio' %}">Atrás</a>
-   </div>
-{%endblock contenido%}
+    <div class="text-center mt-4">
+      <a href="{% url 'inicio' %}" class="btn btn-outline-dark">
+        <i class="bi bi-arrow-left"></i> Atrás
+      </a>
+    </div>
+  </section>
+</div>
+
+<style>
+  body {
+    background: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  .about-section {
+    background: white;
+    max-width: 720px;
+    margin: 3rem auto;
+    padding: 2.5rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  .about-section h1 {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #0d6efd;
+    text-align: center;
+  }
+  .about-section p {
+    line-height: 1.65;
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+  }
+  .signature {
+    font-style: italic;
+    font-weight: 600;
+    margin-top: 2rem;
+    text-align: right;
+    color: #555;
+  }
+  @media (max-width: 576px) {
+    .about-section {
+      padding: 1.5rem 1.5rem;
+      margin: 2rem 1rem;
+    }
+  }
+</style>
+{% endblock contenido %}

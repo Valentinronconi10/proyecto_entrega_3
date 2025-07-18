@@ -1,0 +1,65 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+{% block titulo %}Listado de Canciones{% endblock titulo %}
+
+{% block contenido %}
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+
+      <h2 class="text-center mb-4" style="font-weight: 600; font-size: 2rem;">
+        Canciones Populares
+      </h2>
+
+      {% if canciones %}
+        {% for c in canciones %}
+          <div class="card mb-4 shadow-sm border-0">
+            <div class="row g-0 align-items-center">
+              <div class="col-md-4 text-center p-3" style="min-height: 120px;">
+                {% if c.imagen %}
+                  <img src="{{ c.imagen.url }}" alt="{{ c.titulo }}" class="img-fluid rounded" style="max-height: 120px; object-fit: cover;">
+                {% else %}
+                  <span class="text-muted d-inline-block" style="line-height: 120px;">Sin imagen</span>
+                {% endif %}
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h4 class="card-title mb-2" style="font-size: 1.5rem;">{{ c.titulo }}</h4>
+                  <p class="card-text mb-1"><strong>Artista:</strong> {{ c.artista }}</p>
+                  <p class="card-text"><strong>Duración:</strong> {{ c.duracion }}</p>
+                  <div class="mt-3 d-flex flex-wrap gap-2">
+                    <a href="{% url 'cancionPop_detail' c.id %}" class="btn btn-outline-secondary btn-sm">Detalle</a>
+                    <a href="{% url 'cancionPop_update' c.id %}" class="btn btn-outline-secondary btn-sm">Editar</a>
+                    <a href="{% url 'eliminar_cancionPop' c.id %}" class="btn btn-outline-secondary btn-sm">Eliminar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="alert alert-info text-center">
+          No hay canciones cargadas.
+        </div>
+      {% endif %}
+
+      <div class="text-center mt-4">
+        <a href="{% url 'inicio' %}" class="btn btn-outline-dark">
+          <i class="bi bi-arrow-left"></i> Volver al Inicio
+        </a>
+      </div>
+
+      <div class="text-center mt-3">
+        <a href="{% url 'cancionPop_create' %}" class="btn btn-dark mb-3">Crear Cancion</a>
+      </div>
+
+      <div class="text-center mt-2">
+        <a href="{% url 'canciones' %}">Atrás</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock contenido %}
+
+

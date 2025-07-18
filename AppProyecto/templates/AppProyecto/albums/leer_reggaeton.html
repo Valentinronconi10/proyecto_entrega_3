@@ -1,0 +1,69 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+{% block titulo %}Listado de Álbumes{% endblock titulo %}
+
+{% block contenido %}
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+
+      <!-- Título -->
+      <h2 class="text-center mb-5" style="font-size: 2.5rem; font-weight: 700; letter-spacing: 1px;">
+        Álbumes Populares
+      </h2>
+
+      {% if albumes %}
+        {% for a in albumes %}
+          <div class="d-flex flex-column flex-md-row gap-4 p-4 mb-4 border rounded shadow-sm">
+            <!-- Imagen -->
+            <div class="text-center" style="min-width: 220px;">
+              {% if a.imagen %}
+                <img src="{{ a.imagen.url }}" alt="{{ a.titulo }}" class="img-fluid rounded" style="max-height: 220px; object-fit: cover;">
+              {% else %}
+                <div class="text-muted" style="line-height: 220px;">Sin imagen</div>
+              {% endif %}
+            </div>
+
+            <!-- Detalles -->
+            <div class="flex-grow-1">
+              <h3 class="mb-3" style="font-size: 2rem;">{{ a.titulo }}</h3>
+              <p class="mb-2" style="font-size: 1.2rem;"><strong>Artista:</strong> {{ a.artista }}</p>
+              <p class="mb-2" style="font-size: 1.2rem;"><strong>Fecha de Lanzamiento:</strong> {{ a.fecha_lanzamiento }}</p>
+              <p style="font-size: 1.2rem;"><strong>Género:</strong> {{ a.genero }}</p>
+
+              <div class="mt-4 d-flex flex-wrap gap-3">
+                <a href="{% url 'albumReggaeton_detail' a.id %}" class="btn btn-link p-0" style="color: #212529; text-decoration: underline; font-weight: 600;">
+                  Detalle
+                </a>
+                <a href="{% url 'albumReggaeton_update' a.id %}" class="btn btn-link p-0" style="color: #212529; text-decoration: underline; font-weight: 600;">
+                  Editar
+                </a>
+                <a href="{% url 'eliminar_albumReggaeton' a.id %}" class="btn btn-link p-0" style="color: #212529; text-decoration: underline; font-weight: 600;">
+                  Eliminar
+                </a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="alert alert-info text-center">
+          No hay álbumes cargados.
+        </div>
+      {% endif %}
+
+      <!-- Botones finales -->
+      <div class="text-center mt-5">
+        <a href="{% url 'inicio' %}" class="btn btn-outline-dark me-2">
+          <i class="bi bi-arrow-left"></i> Volver al Inicio
+        </a>
+        <a href="{% url 'albumReggaeton_create' %}" class="btn btn-dark">Crear Álbum</a>
+      </div>
+      <div class="text-center mt-3">
+        <a href="{% url 'albumes' %}" class="text-decoration-none">Atrás</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock contenido %}
+

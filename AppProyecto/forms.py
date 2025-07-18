@@ -1,6 +1,6 @@
 from django import forms
-from .models import Album, Artista, Cancion, Avatar
-from django.contrib.auth.forms import UserCreationForm
+from .models import *
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
 # class AlbumFormulario(forms.Form):
@@ -24,18 +24,59 @@ from django.contrib.auth.models import User
 class AlbumFormulario(forms.ModelForm):
     class Meta:
         model = Album
-        fields = ["titulo", "artista", "fecha_lanzamiento","genero"]
+        fields = ["titulo", "artista", "fecha_lanzamiento","genero", 'imagen']
 
+
+
+class AlbumFormularioReggaeton(forms.ModelForm):
+    class Meta:
+        model = AlbumReggaeton
+        fields = ["titulo", "artista", "fecha_lanzamiento","genero", 'imagen']
+
+
+
+class AlbumFormularioPop(forms.ModelForm):
+    class Meta:
+        model = AlbumPop
+        fields = ["titulo", "artista", "fecha_lanzamiento","genero", 'imagen']
+
+
+    
 class ArtistaFormulario(forms.ModelForm):
     class Meta:
         model = Artista
-        fields = ["nombre", "fecha_nacimiento", "nacionalidad"]
+        fields = ["nombre", "fecha_nacimiento", "nacionalidad", 'imagen']
+
+    
+class ArtistaFormularioPop(forms.ModelForm):
+    class Meta:
+        model = ArtistaPop
+        fields = ["nombre", "fecha_nacimiento", "nacionalidad", 'imagen']
+
+    
+class ArtistaFormularioReggaeton(forms.ModelForm):
+    class Meta:
+        model = ArtistaReggaeton
+        fields = ["nombre", "fecha_nacimiento", "nacionalidad", 'imagen']
+
+
 
 class CancionFormulario(forms.ModelForm):
     class Meta:
         model = Cancion
-        fields = ["titulo", "artista", "duracion"]
+        fields = ["titulo", "artista", "duracion", 'imagen']
 
+
+class CancionFormularioPop(forms.ModelForm):
+    class Meta:
+        model = CancionPop
+        fields = ["titulo", "artista", "duracion", 'imagen']
+
+
+class CancionFormularioReggaeton(forms.ModelForm):
+    class Meta:
+        model = CancionReggaeton
+        fields = ["titulo", "artista", "duracion", 'imagen']
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Email')
@@ -51,3 +92,12 @@ class AvatarForm(forms.ModelForm):
     class Meta:
         model = Avatar
         fields = ['imagen']
+
+class EditUserForm(UserChangeForm):
+    email = forms.EmailField(required = True, label = 'Email')
+    first_name = forms.CharField(required = True, label = 'Nombre')
+    last_name = forms.CharField(required = True, label = 'Apellido')
+
+    class Meta:
+        model = User
+        fields = ['email', 'first_name', 'last_name', 'password']

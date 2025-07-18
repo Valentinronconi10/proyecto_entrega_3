@@ -14,18 +14,23 @@
     </div>
 </div>
 
-<div class="container mt-5" id="opciones-section" style="display: none;">
-    <div class="row justify-content-center">
-        <div class="col-md-4 mb-3">
-            <a href="{% url 'albumes' %}" class="btn btn-outline-primary w-100">Álbum</a>
+<div class="container-fluid py-5" id="opciones-section" style="display: none; min-height: 80vh;">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 text-center mb-4">
+            <h1 class="display-4">Elige donde quieres dirigirte</h1>
         </div>
-        <div class="col-md-4 mb-3">
-            <a href="{% url 'canciones' %}" class="btn btn-outline-success w-100">Canción</a>
+        <div class="col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+            <a href="{% url 'albumes' %}" class="btn btn-outline-primary btn-lg w-100 py-4">Álbum</a>
         </div>
-        <div class="col-md-4 mb-3">
-            <a href="{% url 'artistas' %}" class="btn btn-outline-danger w-100">Artista</a>
+        <div class="col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+            <a href="{% url 'canciones' %}" class="btn btn-outline-success btn-lg w-100 py-4">Canción</a>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+            <a href="{% url 'artistas' %}" class="btn btn-outline-danger btn-lg w-100 py-4">Artista</a>
         </div>
     </div>
 </div>
+
+
 {% endblock contenido %}
 

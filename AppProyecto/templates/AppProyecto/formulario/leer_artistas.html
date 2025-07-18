@@ -1,73 +1,75 @@
 {% extends "AppProyecto/padre.html" %}
 {% load static %}
-{% block titulo %} Listado de Artistas! {% endblock titulo %}
+{% block titulo %}Listado de Artistas{% endblock titulo %}
 
 {% block contenido %}
-
 <div class="container mt-5 mb-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="mb-0">Artistas disponibles</h3>
-                </div>
-                <div class="card-body">
-                    {% if  artistas %}
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>fecha de nacimiento</th>
-                                        <th>nacionalidad</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for a in artistas %}
-                                        <tr>
-                                            <td>{{ a.nombre }}</td>
-                                            <td>{{ a.fecha_nacimiento }}</td>
-                                            <td>{{ a.nacionalidad }}</td>
-                                            
-                                            <td>
-                                                <a href="{% url 'artista_detail' a.id %}" class="btn btn-info btn-sm">
-                                                    Detalle
-                                                </a>
-                                                <a href="{% url 'artista_update' a.id%}" class="btn btn-warning btn-sm">
-                                                    Editar
-                                                </a>
-                                                <a href="{% url 'eliminar_artista' a.id %}" class="btn btn-danger btn-sm">
-                                                    Eliminar
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    {% else %}
-                        <div class="alert alert-info mb-0">
-                            No hay artistas cargados.
-                        </div>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <a href="{% url 'inicio' %}" class="btn btn-outline-primary">
-                    <i class="bi bi-arrow-left"></i> Volver al Inicio
-                </a>
-            </div>
-            <div class="text-center mt-4">
-                <a href="{% url 'artista_create' %}" class="btn btn-primary mb-3">Crear Artista</a>
-            </div>
-            <div class="text-center mt-4">
-                <a href="{% url 'artistas' %}">Atrás</a>
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
 
+      <!-- Título grande -->
+      <h2 class="text-center mb-5" style="font-weight: 700; font-size: 2.5rem; letter-spacing: 1px;">
+        Artistas Populares
+      </h2>
+
+      {% if artistas %}
+        {% for a in artistas %}
+          <div class="d-flex flex-column flex-md-row gap-4 p-4 mb-5 border rounded shadow-sm align-items-center">
+            <!-- Imagen -->
+            <div style="min-width: 220px; text-align: center;">
+              {% if a.imagen %}
+                <img src="{{ a.imagen.url }}" alt="{{ a.nombre }}" class="img-fluid rounded" style="max-height: 220px; object-fit: cover;">
+              {% else %}
+                <div class="text-muted" style="line-height: 220px;">Sin imagen</div>
+              {% endif %}
             </div>
+
+            <!-- Detalles -->
+            <div class="flex-grow-1">
+              <h3 style="font-size: 2rem; margin-bottom: 0.3rem;">{{ a.nombre }}</h3>
+              <p style="font-size: 1.25rem; margin-bottom: 0.25rem;"><strong>Fecha de nacimiento:</strong> {{ a.fecha_nacimiento }}</p>
+              <p style="font-size: 1.25rem;"><strong>Nacionalidad:</strong> {{ a.nacionalidad }}</p>
+
+              <!-- Botones sin color pero visibles -->
+              <div class="mt-4 d-flex gap-3 flex-wrap">
+                <a href="{% url 'artista_detail' a.id %}"
+                   style="padding: 6px 12px; border: 1px solid #444; border-radius: 4px; text-decoration: none; color: #222; font-weight: 600; transition: background-color 0.2s ease;">
+                   Detalle
+                </a>
+                <a href="{% url 'artista_update' a.id %}"
+                   style="padding: 6px 12px; border: 1px solid #444; border-radius: 4px; text-decoration: none; color: #222; font-weight: 600; transition: background-color 0.2s ease;">
+                   Editar
+                </a>
+                <a href="{% url 'eliminar_artista' a.id %}"
+                   style="padding: 6px 12px; border: 1px solid #444; border-radius: 4px; text-decoration: none; color: #222; font-weight: 600; transition: background-color 0.2s ease;">
+                   Eliminar
+                </a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="alert alert-info text-center" style="font-size: 1.3rem;">
+          No hay artistas cargados.
         </div>
+      {% endif %}
+
+      <!-- Botones finales -->
+      <div class="text-center mt-5">
+        <a href="{% url 'inicio' %}" class="btn btn-outline-dark me-2" style="font-size: 1.1rem;">
+          <i class="bi bi-arrow-left"></i> Volver al Inicio
+        </a>
+        <a href="{% url 'artista_create' %}" class="btn btn-dark" style="font-size: 1.1rem;">Crear Artista</a>
+      </div>
+      <div class="text-center mt-3">
+        <a href="{% url 'artistas' %}" class="text-decoration-none" style="font-size: 1.1rem;">Atrás</a>
+      </div>
+
     </div>
+  </div>
 </div>
-<!-- Si usas iconos de Bootstrap, recuerda incluir el CDN de Bootstrap Icons en tu base/padre.html -->
 {% endblock contenido %}
+
+
+
 

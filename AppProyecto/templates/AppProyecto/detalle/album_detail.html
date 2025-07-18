@@ -10,6 +10,15 @@
       <h2 class="mb-0">Detalle del Álbum</h2>
     </div>
     <div class="card-body">
+
+      {% if object.imagen %}
+        <div class="text-center mb-3">
+          <img src="{{ object.imagen.url }}" alt="{{ object.titulo }}" class="img-fluid rounded" style="max-height: 300px;">
+        </div>
+      {% else %}
+        <p class="text-muted text-center">Este álbum no tiene imagen.</p>
+      {% endif %}
+
       <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item">
           <strong>Título:</strong> {{ object.titulo }}
@@ -31,6 +40,7 @@
   </div>
 </div>
 {% endblock contenido %}
+
 
 
 
